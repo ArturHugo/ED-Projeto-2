@@ -5,3 +5,4 @@ graph_list.o
 main.o
 test_main
 teste.txt
+mst_prim.o

@@ -30,6 +30,31 @@ void AddToList(List* head, int nodeIndex, float edgeWeight){
     current->next->next = NULL;
 }
 
+int RemoveFromEdgeList(List* head, int nodeIndex){
+    List* current = head;
+
+    // The negative value is to indicate that an edge that leads to
+    //nodeIndex was not found, since there is no negative index for nodes.
+    int removedEdge = -1;
+
+    while((current != NULL)){
+        if(current->edge.targetNode == nodeIndex){
+            removedEdge = current->edge.targetNode;
+            break;
+        }
+        current = current->next;
+    }
+
+    // If no edge was found, return 0;
+    if(!(removedEdge+1)){
+        return  0;
+    }
+
+    // Else, remove that edge and returns 1.
+    free(current);
+    return 1;
+}
+
 void FreeList(List* head){
     List* currentNode;
     while((currentNode = head) != NULL){
