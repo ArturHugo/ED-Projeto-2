@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "graph.h"
 
 List* CreateList(){
@@ -9,8 +11,8 @@ List* CreateList(){
         exit(1);
     }
 
-    head->edge->targetNode = 0;
-    head->edge->weight = 0;
+    head->edge.targetNode = 0;
+    head->edge.weight = 0;
     head->next = NULL;
     return head;
 }
@@ -19,27 +21,19 @@ void AddToList(List* head, int nodeIndex, float edgeWeight){
     List* current = head;
 
     while(current->next != NULL){
-        current = current->next
+        current = current->next;
     }
 
     current->next = (List*)malloc(sizeof(List));
-    current->next->edge->targetNode = nodeIndex;
-    current->next->edge->weight = edgeWeight;
+    current->next->edge.targetNode = nodeIndex;
+    current->next->edge.weight = edgeWeight;
     current->next->next = NULL;
 }
 
-Edge RemoveFirstNode(List* head){
-    List* aux = head;
-    Edge removedNode;
-    head = head->next;
-    removedNode = aux->edge;
-    free(aux);
-    return removedNode;
-}
-
 void FreeList(List* head){
-    while(head != NULL){
-        free(RemoveFirstNode(head));
+    List* currentNode;
+    while((currentNode = head) != NULL){
+        head = head->next;
+        free(currentNode);
     }
 }
-

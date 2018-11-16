@@ -1,0 +1,7 @@
+.vscode/
+graph.h.gch
+graph_io.o
+graph_list.o
+main.o
+test_main
+teste.txt
